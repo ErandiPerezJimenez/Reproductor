@@ -12,15 +12,19 @@ typedef struct Track{
 	char genre[50];
 	int year;
 	float duration;
+}Track;
+
+typedef struct Node{
 	
-	struct Track* next;
-	struct Track* prev;
-} Track;
+	Track datos;
+	struct Node* next;
+	struct Node* prev;
+} Node;
 
 typedef struct Playlist{
-	Track* first;
-	Track* last;
-	TracK* cursor;
+	Node* first;
+	Node* last;
+	Node* cursor;
 	
 	size_t len;
 }Playlist;
@@ -28,9 +32,9 @@ typedef struct Playlist{
 Playlist* Playlist_New();
 void Playlist_Delete(Playlist** this);
 
-bool Playlist_Insert_front( Playlist* this, int x );
-bool Playlist_Insert_back( Playlist* this, int x );
-bool Playlist_Insert( Playlist* this, int x );
+bool Playlist_Insert_front( Playlist* this, Track x );
+bool Playlist_Insert_back( Playlist* this, Track x );
+bool Playlist_Insert( Playlist* this, Track x );
 
 void Playlist_Remove_front( Playlist* this );
 void Playlist_Remove_back( Playlist* this );
