@@ -40,7 +40,7 @@ void Playlist_Remove_front( Playlist* this );
 void Playlist_Remove_back( Playlist* this );
 void Playlist_Remove( Playlist* this );
 
-int Playlist_Get( Playlist* this );
+Track Playlist_Get( Playlist* this );
 
 void Playlist_Cursor_front( Playlist* this );
 void Playlist_Cursor_back( Playlist* this );
@@ -51,6 +51,6 @@ bool Playlist_IsEmpty( Playlist* this );
 size_t Playlist_Len( Playlist* this );
 
 void Playlist_MakeEmpty( Playlist* this );
-void Playlist_Traverse( Playlist* this, void (*fn)( int item  ) );
+void Playlist_Traverse( Playlist* this, void (*fn)( Track item  ) );
 
 #endif

@@ -151,12 +151,12 @@ void Playlist_Remove_back( Playlist* this )
 	--this->len;
 }
 
-/*
+
 Track Playlist_Get( Playlist* this ) // se tiene que modificar
 {
 	return this->cursor->datos;
 }
-*/
+
 
 void Playlist_Cursor_front( Playlist* this )
 {
@@ -197,8 +197,8 @@ void Playlist_MakeEmpty( Playlist* this )
 	}
 }
 
-/*
-void Playlist_Traverse( Playlist* this, void (*fn)( int item ) ) // se tiene que modificar
+
+void Playlist_Traverse( Playlist* this, void (*fn)( Track item ) ) // se tiene que modificar
 {
 	if( NULL == this ){ return; }
 
@@ -212,4 +212,4 @@ void Playlist_Traverse( Playlist* this, void (*fn)( int item ) ) // se tiene que
    } while( t != this->first );
    
 }
-*/
+
