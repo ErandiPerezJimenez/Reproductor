@@ -54,5 +54,3 @@ void Playlist_MakeEmpty( Playlist* this );
 void Playlist_Traverse( Playlist* this, void (*fn)( int item  ) );
 
 #endif
-
-

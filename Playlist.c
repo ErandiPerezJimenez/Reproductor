@@ -1,4 +1,4 @@
-#include<Playlist.h>
+#include "Playlist.h"
 
 static Node* newNode( Track x )
 {
@@ -19,6 +19,8 @@ Playlist* Playlist_New()
 		lista->first=NULL;
 		lista->last=NULL;
 		lista->len=0;
+	} else{
+		printf("No se creo la lista");
 	}
 	return lista;
 }	
@@ -149,10 +151,12 @@ void Playlist_Remove_back( Playlist* this )
 	--this->len;
 }
 
-int Playlist_Get( Playlist* this ) // se tiene que modificar
+/*
+Track Playlist_Get( Playlist* this ) // se tiene que modificar
 {
 	return this->cursor->datos;
 }
+*/
 
 void Playlist_Cursor_front( Playlist* this )
 {
@@ -193,7 +197,7 @@ void Playlist_MakeEmpty( Playlist* this )
 	}
 }
 
-
+/*
 void Playlist_Traverse( Playlist* this, void (*fn)( int item ) ) // se tiene que modificar
 {
 	if( NULL == this ){ return; }
@@ -206,4 +210,6 @@ void Playlist_Traverse( Playlist* this, void (*fn)( int item ) ) // se tiene que
 		t = t->next;
 		
    } while( t != this->first );
+   
 }
+*/
