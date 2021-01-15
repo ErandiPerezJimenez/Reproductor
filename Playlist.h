@@ -1,15 +1,17 @@
 #ifndef  PLAYLIST_INC
 #define  PLAYLIST_INC
 
+#define MAX 50
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
 
 typedef struct Track{
-	char title[50];
-	char performer[50];
-	char genre[50];
+	char title[MAX];
+	char performer[MAX];
+	char genre[MAX];
 	int year;
 	float duration;
 }Track;
@@ -22,6 +24,7 @@ typedef struct Node{
 } Node;
 
 typedef struct Playlist{
+	
 	Node* first;
 	Node* last;
 	Node* cursor;
