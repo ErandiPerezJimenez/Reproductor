@@ -35,9 +35,9 @@ typedef struct Playlist{
 Playlist* Playlist_New();
 void Playlist_Delete(Playlist** this);
 
-bool Playlist_Insert_front( Playlist* this, Track x );
-bool Playlist_Insert_back( Playlist* this, Track x );
-bool Playlist_Insert( Playlist* this, Track x );
+void Playlist_Insert_front( Playlist* this, Track x );
+void Playlist_Insert_back( Playlist* this, Track x );
+void Playlist_Insert( Playlist* this, Track x );
 
 void Playlist_Remove_front( Playlist* this );
 void Playlist_Remove_back( Playlist* this );

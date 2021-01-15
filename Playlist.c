@@ -36,7 +36,7 @@ void Playlist_Delete( Playlist** this )
 	*this=NULL;
 }	
 
-bool Playlist_Insert( Playlist* this, Track x )
+void Playlist_Insert( Playlist* this, Track x )
 {
 	Node* n= newNode(x);
 	if(Playlist_IsEmpty(this)){
@@ -58,7 +58,7 @@ bool Playlist_Insert( Playlist* this, Track x )
 	return n!=NULL;
 }
 
-bool Playlist_Insert_front( Playlist* this, Track x )
+void Playlist_Insert_front( Playlist* this, Track x )
 {
 	Node* n= newNode(x);
 	if(Playlist_IsEmpty(this)){
@@ -75,7 +75,7 @@ bool Playlist_Insert_front( Playlist* this, Track x )
 	return n!=NULL;
 }
 
-bool Playlist_Insert_back( Playlist* this, Track x )
+void Playlist_Insert_back( Playlist* this, Track x )
 {
 	Node* n = newNode(x);
 	if(Playlist_IsEmpty(this)){
