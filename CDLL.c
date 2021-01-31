@@ -1,4 +1,4 @@
-#include "Playlist.h"
+#include "CDLL.h"
 
 static Node* newNode( Track x )
 {
@@ -11,9 +11,9 @@ static Node* newNode( Track x )
 	return n;
 }
 
-Playlist* Playlist_New()
+CDLL* CDLL_New()
 {
-	Playlist* lista=(Playlist*)malloc(sizeof(Playlist));
+	CDLL* lista=(CDLL*)malloc(sizeof(CDLL));
 	if(lista){
 		lista->cursor=NULL;
 		lista->first=NULL;
@@ -25,7 +25,7 @@ Playlist* Playlist_New()
 	return lista;
 }	
 
-void Playlist_Delete( Playlist** this )
+void CDLL_Delete( CDLL** this )
 {
 	for(size_t i=0;i<(*this)->len;++i){
 		Node* tmp=(*this)->first->next;
@@ -36,10 +36,10 @@ void Playlist_Delete( Playlist** this )
 	*this=NULL;
 }	
 
-void Playlist_Insert( Playlist* this, Track x )
+void CDLL_Insert( CDLL* this, Track x )
 {
 	Node* n= newNode(x);
-	if(Playlist_IsEmpty(this)){
+	if(CDLL_IsEmpty(this)){
 		this->first=this->last=this->cursor=n;
 		this->last->next=this->first;
 		this->first->prev=this->last;
@@ -58,10 +58,10 @@ void Playlist_Insert( Playlist* this, Track x )
 	return n!=NULL;
 }
 
-void Playlist_Insert_front( Playlist* this, Track x )
+void CDLL_Insert_front( CDLL* this, Track x )
 {
 	Node* n= newNode(x);
-	if(Playlist_IsEmpty(this)){
+	if(CDLL_IsEmpty(this)){
 		this->first=this->last=this->cursor=n;
 	} else{
 		n->next=this->first;
@@ -75,10 +75,10 @@ void Playlist_Insert_front( Playlist* this, Track x )
 	return n!=NULL;
 }
 
-void Playlist_Insert_back( Playlist* this, Track x )
+void CDLL_Insert_back( CDLL* this, Track x )
 {
 	Node* n = newNode(x);
-	if(Playlist_IsEmpty(this)){
+	if(CDLL_IsEmpty(this)){
 		this->first=this->last=this->cursor=n;
 	} else{
 		this->last->next=n;
@@ -92,7 +92,7 @@ void Playlist_Insert_back( Playlist* this, Track x )
 	return n!=NULL;
 }
 
-void Playlist_Remove( Playlist* this )
+void CDLL_Remove( CDLL* this )
 {
 	assert(this->len);
 	
@@ -101,10 +101,10 @@ void Playlist_Remove( Playlist* this )
 		this->first=this->last=this->cursor=NULL;
 		--this->len;
 	} else if(this->cursor==this->first){
-		Playlist_Remove_front(this);
+		CDLL_Remove_front(this);
 		this->cursor=this->first;
 	} else if(this->cursor==this->first){
-		Playlist_Remove_back(this);
+		CDLL_Remove_back(this);
 		this->cursor=this->last;
 	} else{
 		Node* tmp1 = this->cursor->prev;
@@ -117,7 +117,7 @@ void Playlist_Remove( Playlist* this )
 	}
 }
 
-void Playlist_Remove_front( Playlist* this )
+void CDLL_Remove_front( CDLL* this )
 {
 	assert(this->len);
 	
@@ -134,7 +134,7 @@ void Playlist_Remove_front( Playlist* this )
 	--this->len;
 }
 
-void Playlist_Remove_back( Playlist* this )
+void CDLL_Remove_back( CDLL* this )
 {
 	assert(this->len);
 	
@@ -152,53 +152,53 @@ void Playlist_Remove_back( Playlist* this )
 }
 
 
-Track Playlist_Get( Playlist* this ) // se tiene que modificar
+Track CDLL_Get( CDLL* this ) // se tiene que modificar
 {
 	return this->cursor->datos;
 }
 
 
-void Playlist_Cursor_front( Playlist* this )
+void CDLL_Cursor_front( CDLL* this )
 {
 	this->cursor=this->first;
 }
 
-void Playlist_Cursor_back( Playlist* this )
+void CDLL_Cursor_back( CDLL* this )
 {
 	this->cursor=this->last;
 }
 
-void Playlist_Cursor_next( Playlist* this )
+void CDLL_Cursor_next( CDLL* this )
 {
 	assert(this->cursor);
 	this->cursor=this->cursor->next;
 }
 
-void Playlist_Cursor_prev( Playlist* this )
+void CDLL_Cursor_prev( CDLL* this )
 {
 	assert(this->cursor);
 	this->cursor=this->cursor->prev;
 }
 
-bool Playlist_IsEmpty( Playlist* this )
+bool CDLL_IsEmpty( CDLL* this )
 {
 	return this->len==0;
 }
 
-size_t Playlist_Len( Playlist* this )
+size_t CDLL_Len( CDLL* this )
 {
 	return this->len;
 }
 
-void Playlist_MakeEmpty( Playlist* this )
+void CDLL_MakeEmpty( CDLL* this )
 {
 	for(size_t i=0; i<this->len;++i){
-		Playlist_Remove_front(this);
+		CDLL_Remove_front(this);
 	}
 }
 
 
-void Playlist_Traverse( Playlist* this, void (*fn)( Track item ) ) // se tiene que modificar
+void CDLL_Traverse( CDLL* this, void (*fn)( Track item ) ) // se tiene que modificar
 {
 	if( NULL == this ){ return; }
 
