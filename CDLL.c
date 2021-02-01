@@ -1,6 +1,6 @@
 #include "CDLL.h"
 
-static Node* newNode( Track x )
+static Node* newNode( Item x )
 {
 	Node* n = (Node*)malloc(sizeof(Node));
 	if(n){
@@ -36,7 +36,7 @@ void CDLL_Delete( CDLL** this )
 	*this=NULL;
 }	
 
-void CDLL_Insert( CDLL* this, Track x )
+void CDLL_Insert( CDLL* this, Item x )
 {
 	Node* n= newNode(x);
 	if(CDLL_IsEmpty(this)){
@@ -57,7 +57,7 @@ void CDLL_Insert( CDLL* this, Track x )
 	++this->len;
 }
 
-void CDLL_Insert_front( CDLL* this, Track x )
+void CDLL_Insert_front( CDLL* this, Item x )
 {
 	Node* n= newNode(x);
 	if(CDLL_IsEmpty(this)){
@@ -74,7 +74,7 @@ void CDLL_Insert_front( CDLL* this, Track x )
 	
 }
 
-void CDLL_Insert_back( CDLL* this, Track x )
+void CDLL_Insert_back( CDLL* this, Item x )
 {
 	Node* n = newNode(x);
 	if(CDLL_IsEmpty(this)){
@@ -102,7 +102,7 @@ void CDLL_Remove( CDLL* this )
 	} else if(this->cursor==this->first){
 		CDLL_Remove_front(this);
 		this->cursor=this->first;
-	} else if(this->cursor==this->first){
+	} else if(this->cursor==this->last){
 		CDLL_Remove_back(this);
 		this->cursor=this->last;
 	} else{
@@ -151,19 +151,22 @@ void CDLL_Remove_back( CDLL* this )
 }
 
 
-Track CDLL_Get( CDLL* this ) // se tiene que modificar
+Item CDLL_Get( CDLL* this ) // se tiene que modificar
 {
+	assert(this->cursor);
 	return this->cursor->datos;
 }
 
 
 void CDLL_Cursor_front( CDLL* this )
 {
+	assert(this->cursor);
 	this->cursor=this->first;
 }
 
 void CDLL_Cursor_back( CDLL* this )
 {
+	assert(this->cursor);
 	this->cursor=this->last;
 }
 
@@ -197,7 +200,7 @@ void CDLL_MakeEmpty( CDLL* this )
 }
 
 
-void CDLL_Traverse( CDLL* this, void (*fn)( Track item ) ) // se tiene que modificar
+void CDLL_Traverse( CDLL* this, void (*fn)( Item item ) ) // se tiene que modificar
 {
 	if( NULL == this ){ return; }
 
