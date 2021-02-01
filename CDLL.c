@@ -55,7 +55,6 @@ void CDLL_Insert( CDLL* this, Track x )
 		this->cursor=n;
 	}
 	++this->len;
-	return n!=NULL;
 }
 
 void CDLL_Insert_front( CDLL* this, Track x )
@@ -72,7 +71,7 @@ void CDLL_Insert_front( CDLL* this, Track x )
 	this->first->prev=this->last;
 	
 	++this->len;
-	return n!=NULL;
+	
 }
 
 void CDLL_Insert_back( CDLL* this, Track x )
@@ -89,14 +88,14 @@ void CDLL_Insert_back( CDLL* this, Track x )
 	this->first->prev=this->last;
 	
 	++this->len;
-	return n!=NULL;
+	
 }
 
 void CDLL_Remove( CDLL* this )
 {
 	assert(this->len);
 	
-	if(this->len=1){
+	if(this->len==1){
 		free(this->first);
 		this->first=this->last=this->cursor=NULL;
 		--this->len;
@@ -121,7 +120,7 @@ void CDLL_Remove_front( CDLL* this )
 {
 	assert(this->len);
 	
-	if(this->len=1){
+	if(this->len==1){
 		free(this->first);
 		this->first=this->last=this->cursor=NULL;
 	} else{
