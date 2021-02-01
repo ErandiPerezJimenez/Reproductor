@@ -17,7 +17,7 @@ typedef struct Track{
 	float duration;
 }Track;
 
-typedef int Item;
+typedef Track Item;
 
 typedef struct Node{
 	
