@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <assert.h>
 
-
+/*
 typedef struct Track{
 	char title[MAX];
 	char performer[MAX];
@@ -16,8 +16,9 @@ typedef struct Track{
 	int year;
 	float duration;
 }Track;
+*/
 
-typedef Track Item;
+typedef Track* Item;
 
 typedef struct Node{
 	
