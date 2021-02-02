@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include <assert.h>
 
+#include "Track.h"
+
 /*
 typedef struct Track{
 	char title[MAX];
