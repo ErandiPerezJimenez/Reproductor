@@ -19,9 +19,7 @@ typedef struct Track
 
 Track*  Track_New();
 void    Track_Delete(           Track** this );
-
-
-void    Track_ChangeTitle(      Track* this );    //Funciones particulares, en revision
+void    Track_ChangeTitle(      Track* this );    //Funciones particulares
 void    Track_ChangePerformer(  Track* this );
 void    Track_ChangeGenre(      Track* this );
 void    Track_ChangeYear(       Track* this );
