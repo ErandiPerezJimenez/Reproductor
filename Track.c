@@ -78,7 +78,7 @@ void Print_DataTrack( Track* this )
     printf("Artista: %s\n", this->performer );
     printf("Genero: %s \n", this->genre );
     printf("Año de salida: %d \n", this->year );
-    printf("Tiempo de duración: %0.2lf min \n\n", this->duration );
+    printf("Tiempo de duración: %0.2f min \n\n", this->duration );
 }
 
 

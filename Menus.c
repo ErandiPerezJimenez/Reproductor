@@ -52,13 +52,13 @@ void TestMenuPlaylist( Playlist* this ) //Deberia de pasarse una playlist en la 
             case 'S': case 's':   break;
             case 'H': case 'h': PrintMenuPlaylist(); break;
 
-            case 'A': case 'a':
+            case 'A': case 'a':;
                 //Playlist_Cursor_back( this );
                 //Track *v1 = Track_New();
                 //{
-                    Playlist_Cursor_back( this );
+                    //Playlist_Cursor_back( this );
                     Track *v1 = Track_New();
-                    Playlist_Insert( this, v1 ); printf("\n\nInsertando cancion en playlist...");
+                    Playlist_Insert_back( this, v1 ); printf("\n\nInsertando cancion en playlist...");
                     Print_DataTrack( v1 );
                     Track_Delete( &v1 );  /*Es interesante y valido borrar la cancion despues de crearla puesto
                                             que utilizamos a la funcion Playlist_Insert, insertandola en la playlist
@@ -116,6 +116,7 @@ void TestPrincipal()
         contenedor de varias playlist's
     */
 
+	Player* player=Player_New();
 
     PrintMenuPrincipal();
 
@@ -136,10 +137,17 @@ void TestPrincipal()
 
             case 'N': case 'n':
                 printf("\nNombre del Playlist: ");
-                char name[50];
-                scanf("%c", name);
+                char name[MAX];
+                
+                fflush( stdin );
+                gets(name);
+                
+                //scanf("%s", name);
                 Playlist* p1 = Playlist_New( name );
-                printf("%c", p1->name);
+                printf("%s", p1->name);
+                
+                Player_Insert_back(player,pl);
+                
                 Playlist_Delete(&p1);
             break;
 
@@ -177,5 +185,7 @@ void TestPrincipal()
        devolverse la memoria de cada nodo, pero cada nodo es una
        playlist independiente y una vez que no existan nodos, devolver
        la del objeto en si mismo*/
+       
+       Player_Delete(&player);
 
 }

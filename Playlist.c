@@ -1,4 +1,5 @@
 #include "Playlist.h"
+#include<string.h>
 
 
 static Node* newNode( Track* x )
@@ -12,10 +13,11 @@ static Node* newNode( Track* x )
 	return n;
 }
 
-Playlist* Playlist_New()
+Playlist* Playlist_New(name[])
 {
 	Playlist* lista = (Playlist*)malloc(sizeof( Playlist ));
 	if(lista){
+		strcpy(lista->name,name);
 		lista->cursor = NULL;
 		lista->first = NULL;
 		lista->last = NULL;

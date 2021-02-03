@@ -15,7 +15,7 @@ typedef struct Node{
 } Node;
 
 typedef struct Playlist{
-    char name[100]; //Nombre del playlist, en prueba
+    char name[MAX]; //Nombre del playlist, en prueba
 	Node* first;
 	Node* last;
 	Node* cursor;
