@@ -7,9 +7,9 @@ Track* Track_New()
 
     if( song ){
         Track_ChangeTitle(     song );
-        Track_ChangePerformer( song );
-        Track_ChangeGenre(     song );
-        Track_ChangeYear(      song );
+        //Track_ChangePerformer( song );
+        //Track_ChangeGenre(     song );
+        //Track_ChangeYear(      song );
         Track_ChangeDuration(  song );
     } else{
         free( song );
@@ -40,7 +40,7 @@ void Track_ChangeTitle( Track* this )
 
 void Track_ChangePerformer( Track* this )
 {
-    printf("\nArtista: ");
+    printf("Artista: ");
     fflush( stdin );
     gets( this->performer );
     //printf("Nombre del artista: %s ", this->performer );
@@ -48,7 +48,7 @@ void Track_ChangePerformer( Track* this )
 
 void Track_ChangeGenre( Track* this )
 {
-    printf("\nGenero: ");
+    printf("Genero: ");
     fflush( stdin );
     gets( this->genre );
     //printf("Nombre del genero: %s ", this->genre );
@@ -56,7 +56,7 @@ void Track_ChangeGenre( Track* this )
 
 void Track_ChangeYear( Track* this )
 {
-    printf("\nAño: ");
+    printf("Año: ");
     fflush( stdin );
     scanf("%d", &this->year );
     //printf("Año de salida: %d ", this->year );
@@ -64,7 +64,7 @@ void Track_ChangeYear( Track* this )
 
 void Track_ChangeDuration( Track* this )
 {
-    printf("\nDuración: ");
+    printf("Duración: ");
     fflush( stdin );
     scanf("%f", &this->duration );
     //printf("Tiempo de duración: %lf ", this->duration );

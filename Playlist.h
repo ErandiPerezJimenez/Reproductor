@@ -45,6 +45,6 @@ bool Playlist_IsEmpty( Playlist* this );
 size_t Playlist_Len( Playlist* this );
 
 void Playlist_MakeEmpty( Playlist* this );
-void Playlist_Traverse( Playlist* this, void (*fn)( Track item  ) );
+void Playlist_Traverse( Playlist* this, void (*fn)( Track item,size_t c  ) );
 
 #endif

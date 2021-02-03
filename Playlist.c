@@ -13,7 +13,7 @@ static Node* newNode( Track* x )
 	return n;
 }
 
-Playlist* Playlist_New(name[])
+Playlist* Playlist_New(char name[])
 {
 	Playlist* lista = (Playlist*)malloc(sizeof( Playlist ));
 	if(lista){
@@ -155,10 +155,10 @@ void Playlist_Remove_back( Playlist* this )
 }
 
 
-/*Track Playlist_Get( Playlist* this ) // se tiene que modificar
+Track Playlist_Get( Playlist* this ) // se tiene que modificar
 {
 	return this->cursor->datos;
-}*/
+}
 
 
 void Playlist_Cursor_front( Playlist* this )
@@ -203,15 +203,16 @@ void Playlist_MakeEmpty( Playlist* this )
 }
 
 
-void Playlist_Traverse( Playlist* this, void (*fn)( Track item ) ) // se tiene que modificar
+void Playlist_Traverse( Playlist* this, void (*fn)( Track item,size_t c ) ) // se tiene que modificar
 {
 	if( NULL == this ){ return; }
-
+	size_t cont=0;
 	Node* t = this->first;
 
 
    do{
-		fn( t->datos );
+   		cont++;
+		fn( t->datos,cont );
 		t = t->next;
 
    } while( t != this->first );

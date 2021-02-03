@@ -153,10 +153,10 @@ void Player_Remove_back( Player* this )
 }
 
 
-/*Playlist Player_Get( Player* this ) // se tiene que modificar
+Playlist Player_Get( Player* this ) // se tiene que modificar
 {
 	return this->cursor->datos;
-}*/
+}
 
 
 void Player_Cursor_front( Player* this )
@@ -201,15 +201,16 @@ void Player_MakeEmpty( Player* this )
 }
 
 
-void Player_Traverse( Player* this, void (*fn)( Playlist item ) ) // se tiene que modificar
+void Player_Traverse( Player* this, void (*fn)( Playlist item, size_t c ) ) // se tiene que modificar
 {
 	if( NULL == this ){ return; }
-
+	size_t cont=0;
 	Node_2* t = this->first;
 
 
    do{
-		fn( t->datos );
+   		cont++;
+		fn( t->datos,cont );
 		t = t->next;
 
    } while( t != this->first );
