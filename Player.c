@@ -155,6 +155,7 @@ void Player_Remove_back( Player* this )
 
 Playlist Player_Get( Player* this ) // se tiene que modificar
 {
+	assert( this->cursor );
 	return this->cursor->datos;
 }
 

@@ -157,6 +157,7 @@ void Playlist_Remove_back( Playlist* this )
 
 Track Playlist_Get( Playlist* this ) // se tiene que modificar
 {
+	assert( this->cursor );
 	return this->cursor->datos;
 }
 

@@ -18,10 +18,10 @@ void Clear()
     #endif // LIN
 }
 
-void PrintMenuPrincipal(Player* this)
+void PrintMenuPrincipal(Player* this,Playlist* that)
 
 {
-	printf("Reproductor (%d playlists)\n",Player_Len(this));
+	printf("Reproductor (%d playlists)(%d canciones)\n",Player_Len(this),Playlist_Len(that));
 	
     printf("\n\tMenú principal\n");
     printf("A) Lista de canciones completa\n");    //Mostraria todas las canciones de la lista principal
@@ -53,7 +53,7 @@ void PrintMenuPlaylist(Playlist* this)
 
 // Función de activación de segundo menú
 
-void TestMenuPlaylist( Player* player, Playlist* this) //Deberia de pasarse una playlist en la que se guardara o modificaran canciones
+void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia de pasarse una playlist en la que se guardara o modificaran canciones
 {
     Clear();
     char cmd;
@@ -85,6 +85,7 @@ void TestMenuPlaylist( Player* player, Playlist* this) //Deberia de pasarse una 
                 }*/
                 Track *v1 = Track_New();
                 Playlist_Insert_back( this, v1 ); printf("\nInsertando %s en %s...\n",v1->title,this->name);
+                Playlist_Insert_back(that,v1);
                 //Print_DataTrack( v1 );
                 Track_Delete( &v1 );  /*Es interesante y valido borrar la cancion despues de crearla puesto
                                             que utilizamos a la funcion Playlist_Insert, insertandola en la playlist
@@ -204,10 +205,12 @@ void TestPrincipal()
         contenedor de varias playlist's
     */
 
+	
 
 	Player* player=Player_New();
+	Playlist* playlist_gral=Playlist_New();
 
-    PrintMenuPrincipal(player);
+    PrintMenuPrincipal(player,playlist_gral);
 
     do{
     	//Clear();
@@ -218,9 +221,9 @@ void TestPrincipal()
 
         switch( cmd )
         {
-        	case 'C': case 'c': Clear(); PrintMenuPrincipal(player); break;
+        	case 'C': case 'c': Clear(); PrintMenuPrincipal(player,playlist_gral); break;
             case 'E': case 'e': break;
-            case 'H': case 'h': PrintMenuPrincipal(player); break;
+            case 'H': case 'h': PrintMenuPrincipal(player,playlist_gral); break;
 
             case 'A': case 'a':
                 //en progreso
@@ -241,7 +244,7 @@ void TestPrincipal()
                 Player_Insert_back(player,p1);
                 
                 printf("Insertando la playlist %s... \n",name);
-                PrintMenuPrincipal(player);
+                PrintMenuPrincipal(player,playlist_gral);
                 
                 
                 Playlist_Delete(&p1);
@@ -279,7 +282,7 @@ void TestPrincipal()
                     
                     
                     
-                    TestMenuPlaylist(player,&player->cursor->datos);
+                    TestMenuPlaylist(player,&player->cursor->datos,playlist_gral);
                     
                     //player->cursor->datos=*this;
                     
@@ -287,14 +290,14 @@ void TestPrincipal()
                     
                     
                     //Playlist_Delete( &this );
-                    PrintMenuPrincipal(player);
+                    PrintMenuPrincipal(player,playlist_gral);
                  }
 
             break;
 
             default:
                 printf("Comando inválido\n");
-                PrintMenuPrincipal(player);
+                PrintMenuPrincipal(player,playlist_gral);
             break;
 
 
@@ -311,7 +314,7 @@ void TestPrincipal()
        playlist independiente y una vez que no existan nodos, devolver
        la del objeto en si mismo*/
 
-       
+       Playlist_Delete(&playlist_gral);
        Player_Delete(&player);
 
 
