@@ -61,23 +61,23 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
     char cmd;
     char str[80];
 
-    PrintMenuPlaylist(this);
+    //PrintMenuPlaylist(this);
 
     do{
     	//Clear();
-    	//PrintMenuPlaylist(this);
+    	PrintMenuPlaylist(this);
         printf("\ncmd > > >: ");
         scanf( "%s", &str );
         cmd = str[0];
 
         switch( cmd )
         {
-        	case 'C': case 'c': Clear(); PrintMenuPlaylist(this); break;
+        	case 'C': case 'c': Clear(); /*PrintMenuPlaylist(this);*/ break;
         	/*case 'T': case 't': 
         		Playlist_Traverse(this,Print_TrackTitle);
         	break;*/
             case 'S': case 's':   break;
-            case 'H': case 'h': PrintMenuPlaylist(this); break;
+            case 'H': case 'h': /*PrintMenuPlaylist(this);*/ break;
 
 
             case 'A': case 'a':;   //";" corrige el error de compilación
@@ -113,7 +113,7 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
                                             que utilizamos a la funcion Playlist_Insert, insertandola en la playlist
                                             que se paso por direccion, por lo tanto ya queda guardada y se cumplen
                                             esos dos propositos, guardarla en una playlist y no dejar memory leaks */
-                PrintMenuPlaylist(this);
+                /*PrintMenuPlaylist(this);*/
 
             break;
 
@@ -204,12 +204,12 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
                 // !!!ACTUALIZACIÓN: El usuario ya puede escoger la canción, pero podria buscarse la forma
                 // de hacer "mas detallada" la simulación de la reproducción
 
-				PrintMenuPlaylist(this);
+				//PrintMenuPlaylist(this);
             break;
 
             default:
                 printf("Opción invalida!\n");
-                PrintMenuPlaylist(this);
+                //PrintMenuPlaylist(this);
             break;
 
         }
@@ -234,11 +234,11 @@ void TestPrincipal()
 	Playlist* playlist_gral=Playlist_New();
 	strcpy(playlist_gral->name,"lista general");
 
-    PrintMenuPrincipal(player,playlist_gral);
+    //PrintMenuPrincipal(player,playlist_gral);
 
     do{
     	//Clear();
-    	//PrintMenuPrincipal(player);
+    	PrintMenuPrincipal(player,playlist_gral);
         printf("\ncmd > > >: ");
         scanf("%s", &str );
         cmd = str[ 0 ];
@@ -250,18 +250,18 @@ void TestPrincipal()
                 Playlist_Insert_back( playlist_gral, v2 ); printf("\nInsertando %s en %s...\n",v2->title,playlist_gral->name);
     			Track_Delete( &v2 );
     			
-                PrintMenuPrincipal(player,playlist_gral);
+                //PrintMenuPrincipal(player,playlist_gral);
         	break;
-        	case 'C': case 'c': Clear(); PrintMenuPrincipal(player,playlist_gral); break;
+        	case 'C': case 'c': Clear(); /*PrintMenuPrincipal(player,playlist_gral);*/ break;
             case 'E': case 'e': break;
-            case 'H': case 'h': PrintMenuPrincipal(player,playlist_gral); break;
+            case 'H': case 'h': /*PrintMenuPrincipal(player,playlist_gral);*/ break;
 
             case 'A': case 'a':
                 //en progreso
                 printf("\nTodas las canciones: \n\n");
                 Playlist_Traverse(playlist_gral,Print_TrackTitle);
                 
-                PrintMenuPrincipal(player,playlist_gral);
+                //PrintMenuPrincipal(player,playlist_gral);
             break;
 
             case 'N': case 'n':
@@ -279,7 +279,7 @@ void TestPrincipal()
                 Player_Insert_back(player,p1);
                 
                 printf("Insertando la playlist %s... \n",name);
-                PrintMenuPrincipal(player,playlist_gral);
+                //PrintMenuPrincipal(player,playlist_gral);
                 
                 
                 Playlist_Delete(&p1);
@@ -346,14 +346,14 @@ void TestPrincipal()
                     
                     
                     //Playlist_Delete( &this );
-                    PrintMenuPrincipal(player,playlist_gral);
+                    
                  }
-
+				//PrintMenuPrincipal(player,playlist_gral);
             break;
 
             default:
                 printf("Comando inválido\n");
-                PrintMenuPrincipal(player,playlist_gral);
+                //PrintMenuPrincipal(player,playlist_gral);
             break;
 
 
