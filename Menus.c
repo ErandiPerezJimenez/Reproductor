@@ -21,7 +21,7 @@ void Clear()
 void PrintMenuPrincipal(Player* this,Playlist* that)
 
 {
-	printf("Reproductor (%d playlists)(%d canciones)\n",Player_Len(this),Playlist_Len(that));
+	printf("\nReproductor (%d playlists)(%d canciones)\n",Player_Len(this),Playlist_Len(that));
 	
     printf("\n\tMenú principal\n");
     printf("A) Lista de canciones completa\n");    //Mostraria todas las canciones de la lista principal
@@ -39,7 +39,7 @@ void PrintMenuPrincipal(Player* this,Playlist* that)
 void PrintMenuPlaylist(Playlist* this)
 {
 	
-	printf("Playlist: %s (%d canciones)\n",this->name,Playlist_Len(this));
+	printf("\nPlaylist: %s (%d canciones)\n",this->name,Playlist_Len(this));
 	
     printf("\n\tMenú para Playlist\n");
     printf("A) Agregar canción\n");       //Agrega una canción a la playlist en la que se este trabajando
