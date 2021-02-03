@@ -5,7 +5,10 @@
 #include <stdio.h>
 #include "Track.h"
 #include "Playlist.h"
+<<<<<<< HEAD
 #include "Player.h"
+=======
+>>>>>>> master
 
 void  Clear();  //Creamos esta función ya que se llamara continuamente pero funciona de forma diferente en windows y linux
 void  PrintMenuPrincipal();
