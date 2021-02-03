@@ -26,7 +26,8 @@ void PrintMenuPrincipal(Player* this,Playlist* that)
     printf("\n\tMenú principal\n");
     printf("A) Lista de canciones completa\n");    //Mostraria todas las canciones de la lista principal
     printf("N) Nueva Playlist\n");                 //Crearia una nueva playlist y la almacenaria en la lista secundaria
-    printf("D) Eliminar Playlist\n");              //Eliminaria una playlist contenida en la lista secundaria
+    printf("Z) Nueva cancion\n");
+	printf("D) Eliminar Playlist\n");              //Eliminaria una playlist contenida en la lista secundaria
     printf("R) Abrir Playlist\n");            //Mostraria un menu con opciones para una playlist
     printf("C) Limpiar pantalla\n");
 	printf("E) Salir\n");                          //Salimos del programa de manera defenitiva
@@ -56,6 +57,7 @@ void PrintMenuPlaylist(Playlist* this)
 void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia de pasarse una playlist en la que se guardara o modificaran canciones
 {
     Clear();
+    int opt;
     char cmd;
     char str[80];
 
@@ -83,11 +85,31 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
                 /*if( Playlist_Len( this ) > 0 ){
                     Playlist_Cursor_back( this );  //Cambiado por un Insert_back
                 }*/
-                Track *v1 = Track_New();
-                Playlist_Insert_back( this, v1 ); printf("\nInsertando %s en %s...\n",v1->title,this->name);
-                Playlist_Insert_back(that,v1);
+                //Track *v1 = Track_New();
+                
+                assert(!Playlist_IsEmpty(that));
+				printf("\nElija una cancion\n");
+            	
+            	
+            	
+            	Playlist_Traverse(that,Print_TrackTitle);
+            	
+            	printf("\ncmd > > >: ");
+            	
+            	scanf("%d",&opt);
+            	
+            	Playlist_Cursor_front(that);
+            	for(size_t i=0;i<opt;++i){
+            		Playlist_Cursor_next(that);
+            	}
+            	Playlist_Cursor_prev(that);
+            	
+            	Track v1=Playlist_Get(that);
+                
+                Playlist_Insert_back( this, &v1 ); printf("\nInsertando %s en %s...\n",v1.title,this->name);
+                
                 //Print_DataTrack( v1 );
-                Track_Delete( &v1 );  /*Es interesante y valido borrar la cancion despues de crearla puesto
+                /*Track_Delete( &v1 );*/  /*Es interesante y valido borrar la cancion despues de crearla puesto
                                             que utilizamos a la funcion Playlist_Insert, insertandola en la playlist
                                             que se paso por direccion, por lo tanto ya queda guardada y se cumplen
                                             esos dos propositos, guardarla en una playlist y no dejar memory leaks */
@@ -197,6 +219,7 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
 
 void TestPrincipal()
 {
+	int opt;
     char cmd;
     char str[80];
     /*  Se pueden crear dos listas doblemente enlazadas
@@ -209,6 +232,7 @@ void TestPrincipal()
 
 	Player* player=Player_New();
 	Playlist* playlist_gral=Playlist_New();
+	strcpy(playlist_gral->name,"lista general");
 
     PrintMenuPrincipal(player,playlist_gral);
 
@@ -221,12 +245,23 @@ void TestPrincipal()
 
         switch( cmd )
         {
+        	case 'Z': case 'z':; 
+        		Track *v2 = Track_New();
+                Playlist_Insert_back( playlist_gral, v2 ); printf("\nInsertando %s en %s...\n",v2->title,playlist_gral->name);
+    			Track_Delete( &v2 );
+    			
+                PrintMenuPrincipal(player,playlist_gral);
+        	break;
         	case 'C': case 'c': Clear(); PrintMenuPrincipal(player,playlist_gral); break;
             case 'E': case 'e': break;
             case 'H': case 'h': PrintMenuPrincipal(player,playlist_gral); break;
 
             case 'A': case 'a':
                 //en progreso
+                printf("\nTodas las canciones: \n\n");
+                Playlist_Traverse(playlist_gral,Print_TrackTitle);
+                
+                PrintMenuPrincipal(player,playlist_gral);
             break;
 
             case 'N': case 'n':
@@ -251,7 +286,28 @@ void TestPrincipal()
             break;
 
             case 'D': case 'd':
-                //Funcion mostrar playlist's
+                //Funcion eliminar playlist's
+                printf("\nElija una playlist\n");
+            	
+            	
+            	
+            	Player_Traverse(player,Print_PlaylistName);
+            	
+            	printf("\ncmd > > >: ");
+            	
+            	scanf("%d",&opt);
+            	
+            	Player_Cursor_front(player);
+            	for(size_t i=0;i<opt;++i){
+            		Player_Cursor_next(player);
+            	}
+            	Player_Cursor_prev(player);
+            	
+            	printf("Se elimino la playlist: %s", player->cursor->datos.name);
+            	
+            	Player_Remove(player);
+            	
+                
 
             break;
 
@@ -261,7 +317,7 @@ void TestPrincipal()
             	
             	
             	printf("\nElija una playlist\n");
-            	int opt;
+            	
             	
             	
             	Player_Traverse(player,Print_PlaylistName);
