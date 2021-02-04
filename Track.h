@@ -9,6 +9,7 @@
 
 typedef struct Track
 {
+	size_t id;
     char  title[ MAX ];
 	char  performer[ MAX ];
 	char  genre[ MAX ];
@@ -17,7 +18,7 @@ typedef struct Track
 
 } Track;
 
-Track*  Track_New();
+Track*  Track_New(size_t id);
 void    Track_Delete(           Track** this );
 void    Track_ChangeTitle(      Track* this );    //Funciones particulares
 void    Track_ChangePerformer(  Track* this );

@@ -218,3 +218,15 @@ void Player_Traverse( Player* this, void (*fn)( Playlist item, size_t c ) ) // s
 
 }
 
+void Player_GralRemove( Player* this, size_t id ) 
+{
+	if( NULL == this ){ return; }
+	Node_2* t = this->first;
+
+   for(size_t i=0;i<Player_Len(this);++i){
+   		
+		Playlist_GralRemove(&t->datos,id);
+		t = t->next;
+   } 
+}
+

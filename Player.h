@@ -46,5 +46,6 @@ size_t Player_Len( Player* this );
 
 void Player_MakeEmpty( Player* this );
 void Player_Traverse( Player* this, void (*fn)( Playlist item, size_t c  ) );
+void Player_GralRemove( Player* this, size_t id ); 
 
 #endif

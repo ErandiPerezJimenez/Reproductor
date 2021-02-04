@@ -1,11 +1,12 @@
 #include "Track.h"
 
 
-Track* Track_New()
+Track* Track_New(size_t id)
 {
     Track* song = malloc( sizeof(Track) );
 
     if( song ){
+    	song->id=id;
         Track_ChangeTitle(     song );
         //Track_ChangePerformer( song );
         //Track_ChangeGenre(     song );

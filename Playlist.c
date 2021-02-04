@@ -220,3 +220,23 @@ void Playlist_Traverse( Playlist* this, void (*fn)( Track item,size_t c ) ) // s
 
 }
 
+void Playlist_GralRemove( Playlist* this, size_t id ) 
+{
+	if( NULL == this ){ return; }
+	Node* t = this->first;
+
+   for(size_t i=0;i<Playlist_Len(this);++i){
+
+		if (t->datos.id==id){
+			this->cursor=t;
+			Playlist_Remove(this);
+		}
+		t = t->next;
+   }
+}
+
+size_t Playlist_GetID(Playlist* this){
+	assert(this->cursor);
+	return this->cursor->datos.id;
+}
+

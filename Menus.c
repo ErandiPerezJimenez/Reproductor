@@ -6,6 +6,7 @@ void Print_TrackTitle(Track item,size_t c){
 void Print_PlaylistName(Playlist item,size_t c){
 	printf("%ld. %s\n",c,item.name);
 }
+
 void Clear()
 {
     #ifdef WIN
@@ -28,7 +29,8 @@ void PrintMenuPrincipal(Player* this,Playlist* that)
     printf("N) Nueva Playlist\n");                 //Crearia una nueva playlist y la almacenaria en la lista secundaria
     printf("Z) Nueva cancion\n");
 	printf("D) Eliminar Playlist\n");              //Eliminaria una playlist contenida en la lista secundaria
-    printf("R) Abrir Playlist\n");            //Mostraria un menu con opciones para una playlist
+    printf("X) Eliminar cancion\n");
+	printf("R) Abrir Playlist\n");            //Mostraria un menu con opciones para una playlist
     printf("C) Limpiar pantalla\n");
 	printf("E) Salir\n");                          //Salimos del programa de manera defenitiva
 
@@ -220,6 +222,8 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
 void TestPrincipal()
 {
 	int opt;
+	int id=1;
+	
     char cmd;
     char str[80];
     /*  Se pueden crear dos listas doblemente enlazadas
@@ -245,10 +249,37 @@ void TestPrincipal()
 
         switch( cmd )
         {
+        	case 'X': case 'x':
+        		printf("\nElija una cancion para eliminar\n");
+            	
+            	Playlist_Traverse(playlist_gral,Print_TrackTitle);
+            	
+            	printf("\ncmd > > >: ");
+            	
+            	scanf("%d",&opt);
+            	
+            	Playlist_Cursor_front(playlist_gral);
+            	for(size_t i=0;i<opt;++i){
+            		Playlist_Cursor_next(playlist_gral);
+            	}
+            	Playlist_Cursor_prev(playlist_gral);
+            	
+            	
+            	printf("Se elimino la cancion: %s\n", playlist_gral->cursor->datos.title);
+            	
+            	Player_GralRemove(player,Playlist_GetID(playlist_gral));
+            	
+            	Playlist_Remove(playlist_gral);
+            	
+            	
+            	
+        	break;
         	case 'Z': case 'z':; 
-        		Track *v2 = Track_New();
+        		Track *v2 = Track_New(id);
                 Playlist_Insert_back( playlist_gral, v2 ); printf("\nInsertando %s en %s...\n",v2->title,playlist_gral->name);
     			Track_Delete( &v2 );
+    			
+    			id++;
     			
                 //PrintMenuPrincipal(player,playlist_gral);
         	break;
