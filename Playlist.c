@@ -211,12 +211,12 @@ void Playlist_Traverse( Playlist* this, void (*fn)( Track item,size_t c ) ) // s
 	Node* t = this->first;
 
 
-   do{
+   for(size_t i=0;i<Playlist_Len(this);++i){
    		cont++;
 		fn( t->datos,cont );
 		t = t->next;
 
-   } while( t != this->first );
+   }
 
 }
 

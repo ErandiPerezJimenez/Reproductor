@@ -209,12 +209,12 @@ void Player_Traverse( Player* this, void (*fn)( Playlist item, size_t c ) ) // s
 	Node_2* t = this->first;
 
 
-   do{
+   for(size_t i=0;i<Player_Len(this);++i){
    		cont++;
 		fn( t->datos,cont );
 		t = t->next;
 
-   } while( t != this->first );
+   } 
 
 }
 

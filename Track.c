@@ -11,7 +11,7 @@ Track* Track_New(size_t id)
         //Track_ChangePerformer( song );
         //Track_ChangeGenre(     song );
         //Track_ChangeYear(      song );
-        Track_ChangeDuration(  song );
+        //Track_ChangeDuration(  song );
     } else{
         free( song );
         song = NULL;

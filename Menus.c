@@ -54,6 +54,70 @@ void PrintMenuPlaylist(Playlist* this)
     printf("S) Salir\n");                 //Salimos de este menú y regresamos al principal
 }
 
+void PrintMenuCancion(Playlist* this,bool play)
+{	if(play){
+		printf("\nReproduciendo: ");
+	} else{
+		printf("\nEn pausa: ");
+	}
+	
+	printf("%s\n",this->cursor->datos.title);
+	
+	Print_DataTrack(&this->cursor->datos);
+	
+    printf("\n\tMenú para Cancion\n");
+    printf("R) Siguiente\n");       //Agrega una canción a la playlist en la que se este trabajando
+    printf("L) Anterior\n");       //Quita una canción seleccionada por el usuario
+    printf("P) Pausar/Reproducir\n");    //Simula la reproducción de la canción ( aun falta un detalle)
+	printf("C) Limpiar pantalla\n");
+    printf("S) Salir\n");                 //Salimos de este menú y regresamos al principal
+}
+
+//Funcion de activacion del tercer menu
+
+void TestMenuCancion(Playlist* this)
+{
+	Clear();
+    bool play=true;
+    char cmd;
+    char str[80];
+
+    //PrintMenuPlaylist(this);
+
+    do{
+    	//Clear();
+    	PrintMenuCancion(this,play);
+        printf("\ncmd > > >: ");
+        scanf( "%s", &str );
+        cmd = str[0];
+
+        switch( cmd )
+        {
+        	case 'C': case 'c': Clear(); /*PrintMenuPlaylist(this);*/ 
+			break;
+            case 'S': case 's':   
+			break;
+            case 'R': case 'r': 
+            	Playlist_Cursor_next(this);
+			break;
+            case 'L': case 'l':
+            	Playlist_Cursor_prev(this);
+            break;
+            case 'P': case 'p':
+            	if(play){
+            		play=false;
+            	} else{
+            		play=true;
+            	}
+            break;
+            default:
+                printf("Opción invalida!\n");
+                //PrintMenuPlaylist(this);
+            break;
+        }
+    } while( cmd != 'S' && cmd != 's');
+}
+
 // Función de activación de segundo menú
 
 void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia de pasarse una playlist en la que se guardara o modificaran canciones
@@ -169,13 +233,15 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
                     printf("\n¡¡¡ Error !!! , la playlist esta vacia\n");
                     break;
                 } else{
+                	
+                	printf("\nElija una cancion\n");
                 	Playlist_Traverse(this,Print_TrackTitle);
                     /*Playlist_Cursor_front( this );
                     for( size_t i = 0; i<Playlist_Len( this ); ++i ){
                         printf("%d.- ",i+1); puts( this->cursor->datos.title );  //Mostramos la lista de canciones en la playlist
                         Playlist_Cursor_next( this );
                     }*/
-
+					
                     size_t p = 0;
                     printf("\ncmd > > >: ");
                     scanf("%ld", &p );
@@ -195,8 +261,8 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
                         printf("Reproduciendo "); puts( this->cursor->datos.title);
                     }
                     Track t=Playlist_Get(this);
-                    Print_DataTrack(&t);
                     
+                    TestMenuCancion(this);
 
                 }
 
