@@ -34,7 +34,7 @@ void PrintMenuPrincipal(Player* this,Playlist* that)
     printf("C) Limpiar pantalla\n");
 	printf("E) Salir\n");                          //Salimos del programa de manera defenitiva
 
-    printf("H) Mostrar ayuda\n ");                  //Vuelve a mostrar este mensaje
+    //printf("H) Mostrar ayuda\n ");                  //Vuelve a mostrar este mensaje
 
 
 }
@@ -48,7 +48,7 @@ void PrintMenuPlaylist(Playlist* this)
     printf("A) Agregar canción\n");       //Agrega una canción a la playlist en la que se este trabajando
     printf("X) Remover canción\n");       //Quita una canción seleccionada por el usuario
     printf("P) Reproducir canción\n");    //Simula la reproducción de la canción ( aun falta un detalle)
-    printf("H) Mostrar ayuda\n");         //Vuelve a mostrar este menú
+    //printf("H) Mostrar ayuda\n");         //Vuelve a mostrar este menú
     //printf("T) Mostrar canciones\n");
     printf("C) Limpiar pantalla\n");
     printf("S) Salir\n");                 //Salimos de este menú y regresamos al principal
@@ -66,11 +66,11 @@ void PrintMenuCancion(Playlist* this,bool play)
 	Print_DataTrack(&this->cursor->datos);
 	
     printf("\n\tMenú para Cancion\n");
-    printf("R) Siguiente\n");       //Agrega una canción a la playlist en la que se este trabajando
-    printf("L) Anterior\n");       //Quita una canción seleccionada por el usuario
-    printf("P) Pausar/Reproducir\n");    //Simula la reproducción de la canción ( aun falta un detalle)
+    printf("R) Siguiente\n");       
+    printf("L) Anterior\n");       
+    printf("P) Pausar/Reproducir\n");    
 	printf("C) Limpiar pantalla\n");
-    printf("S) Salir\n");                 //Salimos de este menú y regresamos al principal
+    printf("S) Salir\n");                 
 }
 
 //Funcion de activacion del tercer menu
@@ -82,10 +82,7 @@ void TestMenuCancion(Playlist* this)
     char cmd;
     char str[80];
 
-    //PrintMenuPlaylist(this);
-
     do{
-    	//Clear();
     	PrintMenuCancion(this,play);
         printf("\ncmd > > >: ");
         scanf( "%s", &str );
@@ -139,39 +136,27 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
         switch( cmd )
         {
         	case 'C': case 'c': Clear(); /*PrintMenuPlaylist(this);*/ break;
-        	/*case 'T': case 't': 
-        		Playlist_Traverse(this,Print_TrackTitle);
-        	break;*/
-            case 'S': case 's':   break;
+        	case 'S': case 's':   break;
             case 'H': case 'h': /*PrintMenuPlaylist(this);*/ break;
-
-
             case 'A': case 'a':;   //";" corrige el error de compilación
-
-                /*if( Playlist_Len( this ) > 0 ){
-                    Playlist_Cursor_back( this );  //Cambiado por un Insert_back
-                }*/
-                //Track *v1 = Track_New();
-                
+                                
                 assert(!Playlist_IsEmpty(that));
 				printf("\nElija una cancion\n");
-            	
-            	
-            	
+				
             	Playlist_Traverse(that,Print_TrackTitle);
-            	
             	printf("\ncmd > > >: ");
-            	
             	scanf("%d",&opt);
             	
+            	//El siguiente conjunto de instrucciones coloca al cursor en la posicion que eligio el usuario
             	Playlist_Cursor_front(that);
             	for(size_t i=0;i<opt;++i){
             		Playlist_Cursor_next(that);
             	}
             	Playlist_Cursor_prev(that);
+            	/////////////////////////////////////////////////////////////////////
+            	
             	
             	Track v1=Playlist_Get(that);
-                
                 Playlist_Insert_back( this, &v1 ); printf("\nInsertando %s en %s...\n",v1.title,this->name);
                 
                 //Print_DataTrack( v1 );
