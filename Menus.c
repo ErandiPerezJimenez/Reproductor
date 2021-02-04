@@ -234,7 +234,7 @@ void TestMenuPlaylist( Player* player, Playlist* this, Playlist* that) //Deberia
                     break;
                 } else{
                 	
-                	printf("\nElija una cancion\n");
+                	printf("\nElija una cancion\n"); 
                 	Playlist_Traverse(this,Print_TrackTitle);
                     /*Playlist_Cursor_front( this );
                     for( size_t i = 0; i<Playlist_Len( this ); ++i ){
