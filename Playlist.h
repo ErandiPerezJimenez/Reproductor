@@ -24,7 +24,7 @@ typedef struct Playlist{
 
 } Playlist;
 
-Playlist* Playlist_New();
+Playlist* Playlist_New(char name[]);
 void Playlist_Delete( Playlist** this );
 
 void Playlist_Insert_front( Playlist* this, Track* x );
