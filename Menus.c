@@ -406,13 +406,13 @@ void TestPrincipal()
 
     } while( cmd != 'E' && cmd != 'e');
 
-    /* Una vez llegados a este punto es posible que el usuario ya
-       ya haya elegido salir del programa, por lo tanto deberiamos
-       devolver la memoria pedida por las primeras dos listas; con la
-       primera no habria demasiado problema, con la segunda deberia
-       devolverse la memoria de cada nodo, pero cada nodo es una
-       playlist independiente y una vez que no existan nodos, devolver
-       la del objeto en si mismo*/
+    																			/* Una vez llegados a este punto es posible que el usuario ya
+       																			ya haya elegido salir del programa, por lo tanto deberiamos
+      																			devolver la memoria pedida por las primeras dos listas; con la
+      																			primera no habria demasiado problema, con la segunda deberia
+       																			devolverse la memoria de cada nodo, pero cada nodo es una
+       																			playlist independiente y una vez que no existan nodos, devolver
+       																			la del objeto en si mismo*/
 
        Playlist_Delete(&playlist_gral);
        Player_Delete(&player);
